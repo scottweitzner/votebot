@@ -1,10 +1,9 @@
 <?php
 
 # https://slack.com/api/METHOD
-
+$_SESSION["optionsCount"] = 0;
+$_SESSION["optionsString"] = "";
 session_start();
-
-$_SESSION['options'] = 0;
 
 $command = $_POST[command]; //incoming command  
 
@@ -20,13 +19,12 @@ if ($command == "/start-poll") {
 if ($command == "/add-options") {
 	$optionsArr = explode(",", $_POST[text]); // split input string into array (delimeter is ',')
 
-	$options = "";
 	for( $i = 0; $i < count($optionsArr); $i++ ){
-		$_SESSION["options"] = $_SESSION["options"] + 1;
-		$options = $options . $_SESSION['options'] . ". " . trim($optionsArr[$i]) . "\n" ; // puts options into "1. example" format
+		$_SESSION["optionsCount"] = $_SESSION["optionsCount"] + 1;
+		$_SESSION["optionsString"] = $_SESSION["optionsString"] . $_SESSION['optionsCount'] . ". " . trim($optionsArr[$i]) . "\n" ; // puts options into "1. example" format
 	}
 	$rawData = [
-		"text" => "The current options are: " . "```" . $options . "```"
+		"text" => "The current options are: " . "```" . $_SESSION["optionsString"] . "```"
 	];
 }
 
@@ -38,3 +36,5 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData); // post encoded data
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // removes "ok" response
 curl_exec($ch);                                                                                                                                                                                                                                                                                                                         
 curl_close($ch);
+
+session_write_close();
