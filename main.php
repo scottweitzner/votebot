@@ -18,12 +18,12 @@ if ($command == "/start-poll") {
 }
 
 if ($command == "/add-options") {
-	$optionsArr = explode("+", $_POST[text]); // split input string into array (delimeter is '+')
+	$optionsArr = explode(",", $_POST[text]); // split input string into array (delimeter is ',')
 
 	$options = "";
 	for( $i = 0; $i < count($optionsArr); $i++ ){
 		$_SESSION["options"] = $_SESSION["options"] + 1;
-		$options = $options . "*" . $_SESSION['options'] . "*" . ". " . $optionsArr[$i] . "\n" ; // puts options into "1. example" format
+		$options = $options . $_SESSION['options'] . ". " . trim($optionsArr[$i]) . "\n" ; // puts options into "1. example" format
 	}
 	$rawData = [
 		"text" => "The current options are: " . "```" . $options . "```"
