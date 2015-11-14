@@ -17,9 +17,9 @@ if ($command == "/add-options") {
 
 	for( $i = 0; $i < count($optionsArr); $i++ ){
 		$_SESSION["optionsCount"] = $_SESSION["optionsCount"] + 1;
-		$_SESSION["optionsString"] = $_SESSION["optionsString"] . $_SESSION['optionsCount'] . ". " . trim($optionsArr[$i]) . "\n" ; // puts options into "1. example" format
+		$_SESSION["optionsString"] = $_SESSION["optionsString"] . "*" . $_SESSION['optionsCount'] . ".* " . trim($optionsArr[$i]) . "\n" ; // puts options into "1. example" format
 	}
-	$rawData["text"] = "The current options are: " . "```" . $_SESSION["optionsString"] . "```" ;
+	$rawData["text"] = "The current options are: \n" . ">>>" . $_SESSION["optionsString"] ;
 }
 
 $jsonData = json_encode($rawData); 
