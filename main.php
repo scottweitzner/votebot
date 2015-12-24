@@ -34,7 +34,7 @@ if ($command == "/add-options") {
 $jsonData = json_encode($rawData); 
 
 // Http POST for writing initial message
-$ch = curl_init('https://hooks.slack.com/services/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');                                                                                                                                          
+$ch = curl_init('https://hooks.slack.com/services/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');                                                                                                                                          
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData); // post encoded data
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // removes "ok" response
 curl_exec($ch);                                                                                                                                                                                                                                                                                                                         
