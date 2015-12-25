@@ -1,6 +1,5 @@
 <?php
 
-# https://slack.com/api/METHOD
 session_start();
 
 echo "Hello";
